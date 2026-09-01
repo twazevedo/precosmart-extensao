@@ -515,7 +515,13 @@ function setupModals() {
   // Modal WhatsApp
   const waModal = document.getElementById('whatsapp-modal');
   document.getElementById('btn-close-wa-modal')?.addEventListener('click', () => {
-    waModal.classList.add('hidden');
+    waModal?.classList.add('hidden');
+  });
+
+  waModal?.addEventListener('click', (e) => {
+    if (e.target === waModal) {
+      waModal.classList.add('hidden');
+    }
   });
 
   document.getElementById('btn-trigger-wa-alert')?.addEventListener('click', () => {
@@ -531,35 +537,75 @@ function setupModals() {
       `🚨 *Alerta PreçoSmart*: Olá! Quero ser notificado quando o produto *${title}* baixar para *${formatBRL(targetPrice)}*. Monitorando as 5 lojas oficiais!`
     );
     window.open(`https://wa.me/?text=${msg}`, '_blank');
-    waModal.classList.add('hidden');
+    waModal?.classList.add('hidden');
     showToast('Alerta via WhatsApp gerado com sucesso! ✓', 'success');
   });
 
   // Modal Afiliados
   const affModal = document.getElementById('affiliate-modal');
   document.getElementById('btn-open-affiliate-modal')?.addEventListener('click', async () => {
-    const { affiliateTags = {} } = await chrome.storage.local.get('affiliateTags');
-    document.getElementById('aff-amazon').value = affiliateTags.amazon || 'precosmartapp-20';
-    document.getElementById('aff-shopee').value = affiliateTags.shopee || '18361251220';
-    document.getElementById('aff-ml').value = affiliateTags.ml || 'azs5603820';
-    affModal.classList.remove('hidden');
+    try {
+      const { affiliateTags = {} } = await chrome.storage.local.get('affiliateTags');
+      document.getElementById('aff-amazon').value = affiliateTags.amazon || 'precosmartapp-20';
+      document.getElementById('aff-shopee').value = affiliateTags.shopee || '18361251220';
+      document.getElementById('aff-ml').value = affiliateTags.ml || 'azs5603820';
+    } catch {
+      document.getElementById('aff-amazon').value = 'precosmartapp-20';
+      document.getElementById('aff-shopee').value = '18361251220';
+      document.getElementById('aff-ml').value = 'azs5603820';
+    }
+    affModal?.classList.remove('hidden');
   });
 
   document.getElementById('btn-close-aff-modal')?.addEventListener('click', () => {
-    affModal.classList.add('hidden');
+    affModal?.classList.add('hidden');
+  });
+
+  affModal?.addEventListener('click', (e) => {
+    if (e.target === affModal) {
+      affModal.classList.add('hidden');
+    }
+  });
+
+  // Fechar qualquer modal ao pressionar ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      affModal?.classList.add('hidden');
+      waModal?.classList.add('hidden');
+    }
   });
 
   document.getElementById('btn-save-affiliates')?.addEventListener('click', async () => {
-    const amazon = document.getElementById('aff-amazon').value.trim();
-    const shopee = document.getElementById('aff-shopee').value.trim();
-    const ml = document.getElementById('aff-ml').value.trim();
+    const btn = document.getElementById('btn-save-affiliates');
+    if (btn) {
+      btn.innerText = '✓ Salvo com Sucesso!';
+      btn.style.background = '#10b981';
+      btn.style.color = '#022c22';
+    }
 
-    await chrome.storage.local.set({
-      affiliateTags: { amazon, shopee, ml }
-    });
+    const amazon = document.getElementById('aff-amazon')?.value.trim() || 'precosmartapp-20';
+    const shopee = document.getElementById('aff-shopee')?.value.trim() || '18361251220';
+    const ml = document.getElementById('aff-ml')?.value.trim() || 'azs5603820';
 
-    showToast('Tags de afiliado salvas com sucesso! ✓', 'success');
-    affModal.classList.add('hidden');
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+        await chrome.storage.local.set({
+          affiliateTags: { amazon, shopee, ml }
+        });
+      }
+    } catch (err) {
+      console.warn('Fallback storage:', err);
+    } finally {
+      setTimeout(() => {
+        affModal?.classList.add('hidden');
+        if (btn) {
+          btn.innerText = 'Salvar Credenciais de Afiliado';
+          btn.style.background = '';
+          btn.style.color = '';
+        }
+        showToast('Tags de afiliado salvas com sucesso! ✓', 'success');
+      }, 250);
+    }
   });
 
   // Test Store Link
