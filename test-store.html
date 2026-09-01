@@ -3,123 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iPhone 15 128GB - Loja Simulada de Teste</title>
+  <title>iPhone 15 128GB Preto — TechStore Oficial</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: #f1f5f9;
+    :root {
+      --bg: #090d16;
+      --card: #111827;
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #3b82f6;
+      --emerald: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      color: #1e293b;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
-      background: #2563eb;
-      color: white;
-      padding: 16px 24px;
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .store-brand {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .product-img {
-      width: 100%;
-      height: 350px;
-      background: #e2e8f0;
-      border-radius: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 64px;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
     }
-    .product-info h1 {
-      font-size: 24px;
+    .store-badge {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .container {
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .product-gallery {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .product-img-box {
+      font-size: 110px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .spec-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .spec-pill strong {
+      color: var(--text);
+      display: block;
+      margin-top: 2px;
+    }
+    .product-info {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .product-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .product-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.25;
       margin-bottom: 12px;
-      line-height: 1.2;
+      color: #ffffff;
+    }
+    .price-block {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
     }
     .price-tag {
       font-size: 32px;
-      font-weight: 800;
-      color: #0f172a;
-      margin: 16px 0;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
     }
     .installments {
-      font-size: 14px;
-      color: #64748b;
-      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .installments strong {
+      color: var(--emerald);
     }
     .buy-button {
-      display: block;
       width: 100%;
       padding: 14px;
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: white;
       text-align: center;
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 800;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s ease;
+    }
+    .buy-button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
     }
     .notice {
-      grid-column: span 2;
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 13px;
-      color: #475569;
+      max-width: 980px;
+      margin: 20px auto 40px auto;
+      padding: 18px 24px;
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 14px;
+      font-size: 12.5px;
+      color: #cbd5e1;
       line-height: 1.5;
+    }
+    .notice strong {
+      color: #34d399;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="store-brand" id="testStoreName">E-Commerce Simulado</div>
-    <div style="font-size: 13px;">Ambiente de Teste da Extensão PreçoSmart</div>
+    <div class="store-brand">
+      <span>⚡</span>
+      <span id="testStoreName">E-Commerce Simulado</span>
+      <span class="store-badge">Loja Oficial de Teste</span>
+    </div>
+    <div style="font-size: 12px; color: var(--text-muted);">
+      Ambiente de Demonstração PreçoSmart
+    </div>
   </header>
 
   <main class="container" id="precosmart-test-product">
-    <div class="product-img">
-      📱
+    <div class="product-gallery">
+      <div class="product-img-box">📱</div>
+      <div class="specs-grid">
+        <div class="spec-pill">Armazenamento: <strong>128 GB</strong></div>
+        <div class="spec-pill">Processador: <strong>A16 Bionic</strong></div>
+        <div class="spec-pill">Tela: <strong>Super Retina XDR</strong></div>
+        <div class="spec-pill">Conectividade: <strong>5G • USB-C</strong></div>
+      </div>
     </div>
 
     <div class="product-info">
-      <span style="font-size: 12px; font-weight: 600; color: #3b82f6; text-transform: uppercase;">Eletrônicos & Telefonia</span>
-      <h1 id="testProductTitle">Smartphone Apple iPhone 15 128GB Preto</h1>
+      <span class="product-tag">Smartphones & Telefonia</span>
+      <h1 class="product-title" id="testProductTitle">Smartphone Apple iPhone 15 128GB Preto</h1>
       
-      <div class="price-tag" id="testProductPrice">
-        R$ 4.999,00
-      </div>
-
-      <div class="installments">
-        ou <strong>R$ 4.749,05</strong> à vista no Pix (5% OFF)<br>
-        ou em até 10x de R$ 499,90 sem juros no cartão
+      <div class="price-block">
+        <div class="price-tag" id="testProductPrice">
+          R$ 4.999,00
+        </div>
+        <div class="installments">
+          ou <strong>R$ 4.749,05</strong> à vista no Pix (5% OFF)<br>
+          ou em até 10x de R$ 499,90 sem juros no cartão
+        </div>
       </div>
 
       <button class="buy-button">Comprar Agora</button>
     </div>
-
-    <div class="notice">
-      ⚡ <strong>Como testar a extensão nesta página:</strong><br>
-      Assim que a extensão estiver carregada no Chrome, o <strong>Widget Flutuante do PreçoSmart</strong> detectará este eletrônico e comparará instantaneamente os preços entre <strong>Mercado Livre, Shopee, KaBuM!, Amazon e AliExpress</strong>!<br>
-      Você verá o aviso de que o menor preço está na <strong>KaBuM! por R$ 4.699,90</strong> (economia de R$ 299,10).
-    </div>
   </main>
+
+  <div class="notice">
+    ⚡ <strong>Como demonstrar a extensão no vídeo / foto:</strong><br>
+    Com a extensão ativada, o <strong>HUD Flutuante PreçoSmart</strong> surge automaticamente no canto inferior direito detectando este eletrônico e alertando que o menor preço está na <strong>KaBuM! por R$ 4.699,90</strong> (economia de R$ 299,10). Você também pode clicar no botão <strong>"Testar Cupons"</strong> ou abrir pelo atalho <strong>Alt + P</strong>!
+  </div>
 
 </body>
 </html>
