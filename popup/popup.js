@@ -215,8 +215,9 @@ async function formatAffiliateUrl(store, originalUrl) {
     const { affiliateTags = {} } = await chrome.storage.local.get('affiliateTags');
     const url = new URL(originalUrl);
 
-    if (store === 'Amazon' && affiliateTags.amazon) {
-      url.searchParams.set('tag', affiliateTags.amazon);
+    const amazonTag = affiliateTags.amazon || 'precosmartapp-20';
+    if (store === 'Amazon' && amazonTag) {
+      url.searchParams.set('tag', amazonTag);
     } else if (store === 'Shopee' && affiliateTags.shopee) {
       url.searchParams.set('aff_id', affiliateTags.shopee);
     } else if (store === 'Mercado Livre' && affiliateTags.ml) {
@@ -536,7 +537,7 @@ function setupModals() {
   const affModal = document.getElementById('affiliate-modal');
   document.getElementById('btn-open-affiliate-modal')?.addEventListener('click', async () => {
     const { affiliateTags = {} } = await chrome.storage.local.get('affiliateTags');
-    document.getElementById('aff-amazon').value = affiliateTags.amazon || '';
+    document.getElementById('aff-amazon').value = affiliateTags.amazon || 'precosmartapp-20';
     document.getElementById('aff-shopee').value = affiliateTags.shopee || '';
     document.getElementById('aff-ml').value = affiliateTags.ml || '';
     affModal.classList.remove('hidden');
