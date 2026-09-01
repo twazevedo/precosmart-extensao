@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PreçoSmart v2 Pro</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <!-- Header Pro com Identidade Visual -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo-badge">
+        <span class="logo-symbol">⚡</span>
+      </div>
+      <div>
+        <div class="brand-headline">
+          <h1 class="brand-title">PreçoSmart</h1>
+          <span class="pro-tag">v2 PRO</span>
+        </div>
+        <p class="brand-subtitle">Comparador de Eletrônicos em Tempo Real</p>
+      </div>
+    </div>
+    <div class="shortcut-pill" title="Pressione Alt+P em qualquer aba para abrir">
+      <kbd>Alt</kbd>+<kbd>P</kbd>
+    </div>
+  </header>
+
+  <!-- Banner de Economia Acumulada -->
+  <div class="savings-counter-bar">
+    <div class="savings-icon">💰</div>
+    <div class="savings-text">
+      <span class="savings-label">Economia Total Monitorada:</span>
+      <span class="savings-amount" id="total-savings-val">R$ 1.250,00</span>
+    </div>
+    <span class="savings-badge">Ativa</span>
+  </div>
+
+  <!-- Barra de Modo de Pagamento (Pix vs Parcelado) -->
+  <div class="payment-mode-bar">
+    <span class="payment-label">Modo de Preço:</span>
+    <div class="payment-toggle-group">
+      <button class="payment-btn active" id="btn-mode-pix" data-mode="pix">⚡ Preço no Pix (à vista)</button>
+      <button class="payment-btn" id="btn-mode-card" data-mode="card">💳 Parcelado (até 12x)</button>
+    </div>
+  </div>
+
+  <!-- Abas de Navegação -->
+  <nav class="nav-tabs">
+    <button class="nav-tab active" id="tab-btn-current">Página Atual</button>
+    <button class="nav-tab" id="tab-btn-search">Buscar Eletrônico</button>
+    <button class="nav-tab" id="tab-btn-alerts">Meus Alertas (<span id="alert-count">0</span>)</button>
+  </nav>
+
+  <!-- Aba 1: Página Atual -->
+  <section class="tab-content" id="tab-current">
+    <div id="detected-container">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Inspecionando produto de tecnologia na aba atual...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aba 2: Buscar Eletrônico & Busca 5 em 1 -->
+  <section class="tab-content hidden" id="tab-search">
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Buscar iPhone, RTX 4060, PS5, Smart TV..." />
+    </div>
+
+    <!-- Filtro de Categorias Rápidas -->
+    <div class="category-chips" id="category-chips">
+      <button class="chip active" data-cat="all">Todos</button>
+      <button class="chip" data-cat="Smartphones">Smartphones</button>
+      <button class="chip" data-cat="Hardware & PC">Hardware</button>
+      <button class="chip" data-cat="Games & Consoles">Games</button>
+      <button class="chip" data-cat="Monitores">Monitores</button>
+    </div>
+
+    <div id="search-results" class="results-list">
+      <!-- Resultados dinâmicos -->
+    </div>
+  </section>
+
+  <!-- Aba 3: Meus Alertas -->
+  <section class="tab-content hidden" id="tab-alerts">
+    <div class="watchlist-header">
+      <span class="watchlist-title">Produtos em Monitoramento</span>
+      <div class="watchlist-actions">
+        <button id="btn-export-watchlist" class="btn-subtle" title="Baixar backup em JSON">Exportar</button>
+        <button id="btn-clear-watchlist" class="btn-subtle danger" title="Limpar lista">Limpar</button>
+      </div>
+    </div>
+    <div id="watchlist-container" class="results-list">
+      <!-- Itens salvos -->
+    </div>
+  </section>
+
+  <!-- Rodapé Pro -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="#" id="open-test-store-link">Ambiente de Teste Offline</a>
+      <span class="footer-stores">5 Lojas Oficiais • 100% Seguro</span>
+    </div>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

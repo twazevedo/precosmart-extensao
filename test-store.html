@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPhone 15 128GB - Loja Simulada de Teste</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      color: #1e293b;
+    }
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .store-brand {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .product-img {
+      width: 100%;
+      height: 350px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+    }
+    .product-info h1 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .price-tag {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 16px 0;
+    }
+    .installments {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 24px;
+    }
+    .buy-button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #2563eb;
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .notice {
+      grid-column: span 2;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="store-brand" id="testStoreName">E-Commerce Simulado</div>
+    <div style="font-size: 13px;">Ambiente de Teste da Extensão PreçoSmart</div>
+  </header>
+
+  <main class="container" id="precosmart-test-product">
+    <div class="product-img">
+      📱
+    </div>
+
+    <div class="product-info">
+      <span style="font-size: 12px; font-weight: 600; color: #3b82f6; text-transform: uppercase;">Eletrônicos & Telefonia</span>
+      <h1 id="testProductTitle">Smartphone Apple iPhone 15 128GB Preto</h1>
+      
+      <div class="price-tag" id="testProductPrice">
+        R$ 4.999,00
+      </div>
+
+      <div class="installments">
+        ou <strong>R$ 4.749,05</strong> à vista no Pix (5% OFF)<br>
+        ou em até 10x de R$ 499,90 sem juros no cartão
+      </div>
+
+      <button class="buy-button">Comprar Agora</button>
+    </div>
+
+    <div class="notice">
+      ⚡ <strong>Como testar a extensão nesta página:</strong><br>
+      Assim que a extensão estiver carregada no Chrome, o <strong>Widget Flutuante do PreçoSmart</strong> detectará este eletrônico e comparará instantaneamente os preços entre <strong>Mercado Livre, Shopee, KaBuM!, Amazon e AliExpress</strong>!<br>
+      Você verá o aviso de que o menor preço está na <strong>KaBuM! por R$ 4.699,90</strong> (economia de R$ 299,10).
+    </div>
+  </main>
+
+</body>
+</html>
