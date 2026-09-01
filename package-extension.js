@@ -2,9 +2,9 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-console.log('--- Empacotando PreçoSmart v2.0 Pro para a Chrome Web Store ---');
+console.log('--- Empacotando PreçoSmart v3.0 Ultra para a Chrome Web Store ---');
 
-const zipName = 'precosmart-extension-v2.0.0.zip';
+const zipName = 'precosmart-extension-v3.0.0.zip';
 const zipPath = path.resolve(zipName);
 
 // Remover ZIP anterior se existir

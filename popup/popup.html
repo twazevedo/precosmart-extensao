@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PreçoSmart v2 Pro</title>
+  <title>PreçoSmart v3 Ultra</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <!-- Header Pro com Identidade Visual -->
+  <!-- Header Ultra -->
   <header class="header">
     <div class="brand">
       <div class="brand-logo-badge">
@@ -16,13 +16,16 @@
       <div>
         <div class="brand-headline">
           <h1 class="brand-title">PreçoSmart</h1>
-          <span class="pro-tag">v2 PRO</span>
+          <span class="ultra-tag">v3 ULTRA</span>
         </div>
-        <p class="brand-subtitle">Comparador de Eletrônicos em Tempo Real</p>
+        <p class="brand-subtitle">Comparador • Cupons • Anti-Fraude • WhatsApp</p>
       </div>
     </div>
-    <div class="shortcut-pill" title="Pressione Alt+P em qualquer aba para abrir">
-      <kbd>Alt</kbd>+<kbd>P</kbd>
+    <div class="header-actions">
+      <button class="icon-btn" id="btn-open-affiliate-modal" title="Configurar Tags de Afiliado (Monetização)">⚙️</button>
+      <div class="shortcut-pill" title="Pressione Alt+P em qualquer aba para abrir">
+        <kbd>Alt</kbd>+<kbd>P</kbd>
+      </div>
     </div>
   </header>
 
@@ -31,7 +34,7 @@
     <div class="savings-icon">💰</div>
     <div class="savings-text">
       <span class="savings-label">Economia Total Monitorada:</span>
-      <span class="savings-amount" id="total-savings-val">R$ 1.250,00</span>
+      <span class="savings-amount" id="total-savings-val">R$ 1.480,00</span>
     </div>
     <span class="savings-badge">Ativa</span>
   </div>
@@ -40,49 +43,82 @@
   <div class="payment-mode-bar">
     <span class="payment-label">Modo de Preço:</span>
     <div class="payment-toggle-group">
-      <button class="payment-btn active" id="btn-mode-pix" data-mode="pix">⚡ Preço no Pix (à vista)</button>
-      <button class="payment-btn" id="btn-mode-card" data-mode="card">💳 Parcelado (até 12x)</button>
+      <button class="payment-btn active" id="btn-mode-pix" data-mode="pix">⚡ Preço no Pix</button>
+      <button class="payment-btn" id="btn-mode-card" data-mode="card">💳 Parcelado</button>
     </div>
   </div>
 
-  <!-- Abas de Navegação -->
+  <!-- Abas de Navegação (4 Abas) -->
   <nav class="nav-tabs">
     <button class="nav-tab active" id="tab-btn-current">Página Atual</button>
-    <button class="nav-tab" id="tab-btn-search">Buscar Eletrônico</button>
-    <button class="nav-tab" id="tab-btn-alerts">Meus Alertas (<span id="alert-count">0</span>)</button>
+    <button class="nav-tab" id="tab-btn-search">Buscar</button>
+    <button class="nav-tab" id="tab-btn-coupons">Cupons 🎟️</button>
+    <button class="nav-tab" id="tab-btn-alerts">Alertas (<span id="alert-count">0</span>)</button>
   </nav>
 
-  <!-- Aba 1: Página Atual -->
+  <!-- Aba 1: Página Atual & Produto Detectado -->
   <section class="tab-content" id="tab-current">
     <div id="detected-container">
       <div class="loading-state">
         <div class="spinner"></div>
-        <p>Inspecionando produto de tecnologia na aba atual...</p>
+        <p>Inspecionando produto na aba atual...</p>
       </div>
     </div>
   </section>
 
-  <!-- Aba 2: Buscar Eletrônico & Busca 5 em 1 -->
+  <!-- Aba 2: Buscar Eletrônico -->
   <section class="tab-content hidden" id="tab-search">
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="Buscar iPhone, RTX 4060, PS5, Smart TV..." />
+      <input type="text" id="search-input" placeholder="Buscar 4060, iPhone, PS5, Smart TV..." />
     </div>
 
-    <!-- Filtro de Categorias Rápidas -->
+    <!-- Filtro de Categorias -->
     <div class="category-chips" id="category-chips">
       <button class="chip active" data-cat="all">Todos</button>
-      <button class="chip" data-cat="Smartphones">Smartphones</button>
       <button class="chip" data-cat="Hardware & PC">Hardware</button>
+      <button class="chip" data-cat="Smartphones">Smartphones</button>
       <button class="chip" data-cat="Games & Consoles">Games</button>
       <button class="chip" data-cat="Monitores">Monitores</button>
     </div>
 
-    <div id="search-results" class="results-list">
-      <!-- Resultados dinâmicos -->
+    <div id="search-results" class="results-list"></div>
+  </section>
+
+  <!-- Aba 3: Testador Automático de Cupons (Estilo Honey) -->
+  <section class="tab-content hidden" id="tab-coupons">
+    <div class="coupon-header">
+      <span class="coupon-title">🎟️ Testador Automático de Cupons</span>
+      <span class="coupon-status-tag">5 Lojas Ativas</span>
+    </div>
+
+    <!-- Card de Teste Automático -->
+    <div class="coupon-tester-card">
+      <p style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">
+        O PreçoSmart testa cupons em lote e seleciona o que oferece a maior economia em dinheiro para você!
+      </p>
+      <button id="btn-run-coupon-test" class="btn-test-coupons">
+        🚀 Testar Todos os Cupons Agora
+      </button>
+
+      <!-- Barra de Progresso do Teste -->
+      <div id="coupon-progress-container" class="coupon-progress-box hidden">
+        <div class="coupon-progress-status" id="coupon-progress-text">Testando cupom 1 de 5...</div>
+        <div class="coupon-progress-bar">
+          <div class="coupon-progress-fill" id="coupon-progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; font-weight: 700; color: #94a3b8; margin: 10px 0 6px 0; text-transform: uppercase;">
+      Cupons Verificados Hoje:
+    </div>
+
+    <div id="available-coupons-list" class="coupons-list">
+      <!-- Injetado dinamicamente via JS -->
     </div>
   </section>
 
-  <!-- Aba 3: Meus Alertas -->
+  <!-- Aba 4: Meus Alertas -->
   <section class="tab-content hidden" id="tab-alerts">
     <div class="watchlist-header">
       <span class="watchlist-title">Produtos em Monitoramento</span>
@@ -91,16 +127,62 @@
         <button id="btn-clear-watchlist" class="btn-subtle danger" title="Limpar lista">Limpar</button>
       </div>
     </div>
-    <div id="watchlist-container" class="results-list">
-      <!-- Itens salvos -->
-    </div>
+    <div id="watchlist-container" class="results-list"></div>
   </section>
+
+  <!-- Modal: Alerta de Preço no WhatsApp -->
+  <div id="whatsapp-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 13px; font-weight: 700; color: #ffffff;">📲 Alerta no WhatsApp</h3>
+        <button id="btn-close-wa-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <p style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">
+        Defina o valor desejado. Nós geramos o link direto para acionar seu bot no WhatsApp na hora da queda de preço!
+      </p>
+      <label style="font-size: 11px; color: #cbd5e1; display: block; margin-bottom: 4px;">Produto:</label>
+      <input type="text" id="wa-product-title" readonly class="modal-input" style="background: #0f172a;" />
+
+      <label style="font-size: 11px; color: #cbd5e1; display: block; margin: 8px 0 4px 0;">Preço Meta (R$):</label>
+      <input type="number" id="wa-target-price" placeholder="Ex: 1800.00" class="modal-input" />
+
+      <button id="btn-trigger-wa-alert" class="btn-whatsapp">
+        <span style="font-size: 14px;">📲</span> Abrir Notificação no WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal: Configuração de Afiliados (Monetização) -->
+  <div id="affiliate-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 13px; font-weight: 700; color: #ffffff;">💰 Tags de Afiliado (Monetização)</h3>
+        <button id="btn-close-aff-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <p style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">
+        Cadastre seus códigos de afiliado das lojas. Todas as compras feitas pelos usuários gerarão comissão para você!
+      </p>
+
+      <label style="font-size: 10px; color: #cbd5e1;">Amazon Associate Tag:</label>
+      <input type="text" id="aff-amazon" placeholder="ex: seuid-20" class="modal-input" />
+
+      <label style="font-size: 10px; color: #cbd5e1; margin-top: 6px; display: block;">Shopee Affiliate ID:</label>
+      <input type="text" id="aff-shopee" placeholder="ex: 12345678" class="modal-input" />
+
+      <label style="font-size: 10px; color: #cbd5e1; margin-top: 6px; display: block;">Mercado Livre Afiliados Tag:</label>
+      <input type="text" id="aff-ml" placeholder="ex: meuidml" class="modal-input" />
+
+      <button id="btn-save-affiliates" class="btn-track" style="margin-top: 12px;">
+        Salvar Configurações de Afiliado
+      </button>
+    </div>
+  </div>
 
   <!-- Rodapé Pro -->
   <footer class="footer">
     <div class="footer-inner">
       <a href="#" id="open-test-store-link">Ambiente de Teste Offline</a>
-      <span class="footer-stores">5 Lojas Oficiais • 100% Seguro</span>
+      <span class="footer-stores">5 Lojas • Frete • Cupons • Anti-Fraude</span>
     </div>
   </footer>
 

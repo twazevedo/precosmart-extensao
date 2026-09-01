@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "PreçoSmart v2 Pro - Comparador de Eletrônicos",
-  "version": "2.0.0",
-  "description": "Comparador Inteligente de Eletrônicos em Tempo Real (Pix e Parcelado) no Mercado Livre, Shopee, KaBuM!, Amazon e AliExpress.",
+  "name": "PreçoSmart v3 Ultra - Comparador de Eletrônicos & Cupons",
+  "version": "3.0.0",
+  "description": "Comparador de Eletrônicos em Tempo Real, Testador de Cupons, Selo Anti-Fraude (Metade do Dobro), Comparador de Frete e Alertas no WhatsApp.",
   "icons": {
     "16": "icons/icon-16.png",
     "48": "icons/icon-48.png",
@@ -22,7 +22,7 @@
         "default": "Alt+P",
         "mac": "Alt+P"
       },
-      "description": "Abrir o PreçoSmart v2 Pro instantaneamente"
+      "description": "Abrir o PreçoSmart v3 Ultra instantaneamente"
     }
   },
   "background": {

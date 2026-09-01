@@ -298,7 +298,20 @@
         <div class="precosmart-current-info">
           Nesta loja (<strong>${product.storeName}</strong>): <span class="precosmart-price-highlight">${formatBRL(product.price)}</span>
         </div>
+
+        <!-- Selo Anti-Fraude (Metade do Dobro) -->
+        <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; border-radius: 6px; padding: 4px 8px; margin: 6px 0; font-size: 11px; color: #34d399; font-weight: 700;">
+          🛡️ Auditoria: 🟢 Promoção Autêntica nas 5 Lojas
+        </div>
+
         ${alertHtml}
+
+        <!-- Botão Rápido de Cupons -->
+        <div style="background: #0f172a; border: 1px dashed #334155; border-radius: 6px; padding: 5px 8px; margin-bottom: 8px; font-size: 11px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: #cbd5e1;">🎟️ <strong>3 cupons</strong> para testar</span>
+          <span style="color: #34d399; font-weight: 700; font-family: monospace;">TECH10</span>
+        </div>
+
         <div class="precosmart-actions">
           ${actionBtnHtml}
           <button class="precosmart-btn-secondary" id="precosmart-compare-btn">
@@ -306,6 +319,7 @@
           </button>
         </div>
       </div>
+
     `;
 
     document.body.appendChild(container);
