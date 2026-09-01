@@ -51,6 +51,11 @@ body {
   position: relative;
 }
 
+/* Utilitário essencial de visibilidade */
+.hidden {
+  display: none !important;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
@@ -736,6 +741,10 @@ body {
   justify-content: center;
   padding: 16px;
   z-index: 999;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
 }
 
 .modal-card {

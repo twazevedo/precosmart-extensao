@@ -515,12 +515,16 @@ function setupModals() {
   // Modal WhatsApp
   const waModal = document.getElementById('whatsapp-modal');
   document.getElementById('btn-close-wa-modal')?.addEventListener('click', () => {
-    waModal?.classList.add('hidden');
+    if (waModal) {
+      waModal.classList.add('hidden');
+      waModal.style.display = 'none';
+    }
   });
 
   waModal?.addEventListener('click', (e) => {
     if (e.target === waModal) {
       waModal.classList.add('hidden');
+      waModal.style.display = 'none';
     }
   });
 
@@ -537,7 +541,10 @@ function setupModals() {
       `🚨 *Alerta PreçoSmart*: Olá! Quero ser notificado quando o produto *${title}* baixar para *${formatBRL(targetPrice)}*. Monitorando as 5 lojas oficiais!`
     );
     window.open(`https://wa.me/?text=${msg}`, '_blank');
-    waModal?.classList.add('hidden');
+    if (waModal) {
+      waModal.classList.add('hidden');
+      waModal.style.display = 'none';
+    }
     showToast('Alerta via WhatsApp gerado com sucesso! ✓', 'success');
   });
 
@@ -554,24 +561,37 @@ function setupModals() {
       document.getElementById('aff-shopee').value = '18361251220';
       document.getElementById('aff-ml').value = 'azs5603820';
     }
-    affModal?.classList.remove('hidden');
+    if (affModal) {
+      affModal.classList.remove('hidden');
+      affModal.style.display = 'flex';
+    }
   });
 
   document.getElementById('btn-close-aff-modal')?.addEventListener('click', () => {
-    affModal?.classList.add('hidden');
+    if (affModal) {
+      affModal.classList.add('hidden');
+      affModal.style.display = 'none';
+    }
   });
 
   affModal?.addEventListener('click', (e) => {
     if (e.target === affModal) {
       affModal.classList.add('hidden');
+      affModal.style.display = 'none';
     }
   });
 
   // Fechar qualquer modal ao pressionar ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      affModal?.classList.add('hidden');
-      waModal?.classList.add('hidden');
+      if (affModal) {
+        affModal.classList.add('hidden');
+        affModal.style.display = 'none';
+      }
+      if (waModal) {
+        waModal.classList.add('hidden');
+        waModal.style.display = 'none';
+      }
     }
   });
 
@@ -597,14 +617,17 @@ function setupModals() {
       console.warn('Fallback storage:', err);
     } finally {
       setTimeout(() => {
-        affModal?.classList.add('hidden');
+        if (affModal) {
+          affModal.classList.add('hidden');
+          affModal.style.display = 'none';
+        }
         if (btn) {
           btn.innerText = 'Salvar Credenciais de Afiliado';
           btn.style.background = '';
           btn.style.color = '';
         }
         showToast('Tags de afiliado salvas com sucesso! ✓', 'success');
-      }, 250);
+      }, 200);
     }
   });
 
